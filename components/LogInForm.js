@@ -28,7 +28,7 @@ class LogInForm extends Component {
           <Label>Email</Label>
           <Input />
         </Item>
-        <Item floatingLabel last>
+        <Item floatingLabel>
           <Label>Password</Label>
           <Input secureTextEntry />
         </Item>
