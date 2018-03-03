@@ -1,17 +1,29 @@
 import React, { Component } from 'react';
+import { PropTypes } from 'prop-types';
 import { Form, Item, Input, Label, Button, Text } from 'native-base';
+
+import config from '../config';
 
 import buttonStyles from '../styles/button';
 import textStyles from '../styles/text';
+import containerStyles from '../styles/container';
 
 class LogInForm extends Component {
+  static propTypes = {
+    actions: PropTypes.shape({
+      onConnectToServerPress: PropTypes.func.isRequired,
+    }).isRequired,
+  };
+
   state = {
-    URL: 'sonoff-server.dev',
+    URL: config.API_URL,
   };
 
   render() {
+    const { actions } = this.props;
+
     return (
-      <Form>
+      <Form style={containerStyles.form}>
         <Item floatingLabel>
           <Label>Email</Label>
           <Input />
@@ -33,7 +45,7 @@ class LogInForm extends Component {
         <Text style={textStyles.connectedServer}>
           Connected to: {this.state.URL}
         </Text>
-        <Button transparent info block style={buttonStyles.connectToOwnServer}>
+        <Button style={buttonStyles.connectToOwnServer} onPress={actions.onConnectToServerPress} transparent info block>
           <Text>
             Connect to your own server
           </Text>

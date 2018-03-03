@@ -7,5 +7,10 @@ export default StyleSheet.create({
   signUp: {
     marginTop: 10,
   },
-  connectToOwnServer: {},
+  inlineButtonsContainer: {
+    marginTop: 10,
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+  },
 });
