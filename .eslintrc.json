@@ -1,0 +1,12 @@
+{
+  "extends": "brainhub",
+  "overrides": [
+    {
+      "files": [ "*.test.js" ],
+      "env": {
+        "node": true,
+        "jest": true
+      }
+    }
+  ]
+}
