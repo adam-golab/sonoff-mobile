@@ -1,6 +1,8 @@
+import { Font } from 'expo'; // eslint-disable-line import/named
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View, ActivityIndicator, StyleSheet } from 'react-native';
+
 
 const styles = StyleSheet.create({
   container: {
@@ -18,8 +20,12 @@ export default class AuthLoading extends Component {
     }),
   };
 
-  constructor(props) {
-    super(props);
+  async componentDidMount() {
+    await Font.loadAsync({
+      Roboto: require('native-base/Fonts/Roboto.ttf'),
+      Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'), // eslint-disable-line camelcase
+      Ionicons: require('@expo/vector-icons/fonts/Ionicons.ttf'),
+    });
     this.checkAuth();
   }
 
@@ -28,7 +34,7 @@ export default class AuthLoading extends Component {
     // this.props.navigation.navigate(userToken ? 'App' : 'Auth');
 
     // TODO: remove this mocked auth check functionality
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    // await new Promise(resolve => setTimeout(resolve, 2000));
     this.props.navigation.navigate('Auth');
   };
 

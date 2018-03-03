@@ -1,13 +1,13 @@
-import { StackNavigator, SwitchNavigator } from 'react-navigation';
+import { DrawerNavigator, SwitchNavigator } from 'react-navigation';
 
 import HomeScreen from './screens/Home';
 import LogInScreen from './screens/LogIn';
 import AuthLoadingScreen from './screens/AuthLoading';
 
-const AppStack = StackNavigator({
+const AppStack = DrawerNavigator({
   Home: HomeScreen,
 });
-const AuthStack = StackNavigator({
+const AuthStack = DrawerNavigator({
   LogIn: LogInScreen,
 });
 
@@ -19,6 +19,5 @@ export default SwitchNavigator(
   },
   {
     initialRouteName: 'AuthLoading',
-    animationEnabled: true,
   }
 );
