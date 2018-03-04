@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View, ActivityIndicator, StyleSheet } from 'react-native';
 
+import { routes } from '../config';
 
 const styles = StyleSheet.create({
   container: {
@@ -17,7 +18,7 @@ export default class AuthLoading extends Component {
   static propTypes = {
     navigation: PropTypes.shape({
       navigate: PropTypes.func.isRequired,
-    }),
+    }).isRequired,
   };
 
   async componentDidMount() {
@@ -35,7 +36,7 @@ export default class AuthLoading extends Component {
 
     // TODO: remove this mocked auth check functionality
     // await new Promise(resolve => setTimeout(resolve, 2000));
-    this.props.navigation.navigate('Auth');
+    this.props.navigation.navigate(routes.auth.MAIN);
   };
 
   render() {

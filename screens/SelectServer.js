@@ -15,8 +15,6 @@ export default class SelectServer extends Component {
   handleBackPress = () => this.props.navigation.goBack();
 
   render() {
-    const { navigation: { goBack } } = this.props;
-
     return (
       <Container style={containerStyles.main}>
         <Header>
@@ -31,7 +29,7 @@ export default class SelectServer extends Component {
           <Right />
         </Header>
         <Content padder contentContainerStyle={containerStyles.content}>
-          <SelectServerForm goBack={goBack} />
+          <SelectServerForm />
         </Content>
       </Container>
     );

@@ -1,17 +1,20 @@
-import { StackNavigator, SwitchNavigator } from 'react-navigation';
+import { StackNavigator, SwitchNavigator, DrawerNavigator } from 'react-navigation';
 
-import HomeScreen from './screens/Home';
+import { routes } from './config';
+
+import DevicesScreen from './screens/Devices';
 import LogInScreen from './screens/LogIn';
 import SelectServerScreen from './screens/SelectServer';
 import AuthLoadingScreen from './screens/AuthLoading';
 
-const AppStack = StackNavigator({
-  Home: HomeScreen,
+const AppStack = DrawerNavigator({
+  [routes.app.DEVICES]: DevicesScreen,
 });
 const AuthStack = StackNavigator({
-  LogIn: LogInScreen,
-  SelectServer: SelectServerScreen,
+  [routes.auth.LOG_IN]: LogInScreen,
+  [routes.auth.SELECT_SERVER]: SelectServerScreen,
 }, {
+  initialRouteName: routes.auth.LOG_IN,
   navigationOptions: {
     header: null,
   },
@@ -19,11 +22,11 @@ const AuthStack = StackNavigator({
 
 export default SwitchNavigator(
   {
-    AuthLoading: AuthLoadingScreen,
-    App: AppStack,
-    Auth: AuthStack,
+    [routes.AUTH_LOADING]: AuthLoadingScreen,
+    [routes.app.MAIN]: AppStack,
+    [routes.auth.MAIN]: AuthStack,
   },
   {
-    initialRouteName: 'AuthLoading',
+    initialRouteName: routes.AUTH_LOADING,
   }
 );

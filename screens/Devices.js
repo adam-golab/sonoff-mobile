@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default class Home extends Component {
+export default class Devices extends Component {
   static navigationOptions = {
     title: 'Devices',
   };

@@ -3,6 +3,7 @@ import { PropTypes } from 'prop-types';
 import { View } from 'react-native';
 import { Form, Item, Input, Label, Button, Text } from 'native-base';
 import { connect } from 'react-redux';
+import { withNavigation } from 'react-navigation';
 
 import config from '../config';
 
@@ -16,8 +17,10 @@ import textStyles from '../styles/text';
 
 class SelectServerForm extends Component {
   static propTypes = {
+    navigation: PropTypes.shape({
+      goBack: PropTypes.func.isRequired,
+    }).isRequired,
     url: PropTypes.string.isRequired,
-    goBack: PropTypes.func.isRequired,
     changeServer: PropTypes.func.isRequired,
   };
 
@@ -40,11 +43,11 @@ class SelectServerForm extends Component {
     });
   };
 
-  handleCancelPress = () => this.props.goBack();
+  handleCancelPress = () => this.props.navigation.goBack();
 
   handleConnectPress = () => {
     const { url } = this.state;
-    const { changeServer, goBack } = this.props;
+    const { changeServer, navigation } = this.props;
     const { error } = validateServerUrl(url);
 
     if (error) {
@@ -55,7 +58,7 @@ class SelectServerForm extends Component {
     }
     // TODO: check if selected server require authentication.
     changeServer(url);
-    return goBack();
+    return navigation.goBack();
   };
 
   render() {
@@ -94,4 +97,4 @@ export default connect(state => ({
   url: state.server.url,
 }), {
   changeServer,
-})(SelectServerForm);
+})(withNavigation(SelectServerForm));
