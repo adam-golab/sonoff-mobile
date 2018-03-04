@@ -53,7 +53,7 @@ class SelectServerForm extends Component {
         error,
       });
     }
-    // TODO: check if selected server support authenticated users.
+    // TODO: check if selected server require authentication.
     changeServer(url);
     return goBack();
   };
