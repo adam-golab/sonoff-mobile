@@ -1,0 +1,1 @@
+export const CHANGE_SERVER = 'CHANGE_SERVER';

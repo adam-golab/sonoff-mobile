@@ -1,3 +1,5 @@
 export default {
-  server: {},
+  server: {
+    url: '',
+  },
 };

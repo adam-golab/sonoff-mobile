@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { Form, Item, Input, Label, Button, Text } from 'native-base';
+import { connect } from 'react-redux';
 
-import config from '../config';
+import { getServerUrl } from '../store/selectors/server';
 
 import buttonStyles from '../styles/button';
 import textStyles from '../styles/text';
@@ -13,14 +14,11 @@ class LogInForm extends Component {
     actions: PropTypes.shape({
       onConnectToServerPress: PropTypes.func.isRequired,
     }).isRequired,
-  };
-
-  state = {
-    URL: config.API_URL,
+    url: PropTypes.string.isRequired,
   };
 
   render() {
-    const { actions } = this.props;
+    const { actions, url } = this.props;
 
     return (
       <Form style={containerStyles.form}>
@@ -43,7 +41,7 @@ class LogInForm extends Component {
           </Text>
         </Button>
         <Text style={textStyles.connectedServer}>
-          Connected to: {this.state.URL}
+          Connected to: {url}
         </Text>
         <Button style={buttonStyles.connectToOwnServer} onPress={actions.onConnectToServerPress} transparent info block>
           <Text>
@@ -55,4 +53,6 @@ class LogInForm extends Component {
   }
 }
 
-export default LogInForm;
+export default connect(state => ({
+  url: getServerUrl(state),
+}))(LogInForm);
